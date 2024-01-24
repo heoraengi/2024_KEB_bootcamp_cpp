@@ -110,49 +110,86 @@
 // }
 
 //4-15
+// #include<iostream>
+// using namespace std;
+
+// int main(){
+//     int score1, score2, score3, maxScore, minScore, score;
+
+//     cout << "첫 번째 점수 입력 : ";
+//     cin >> score1;
+//     cout << "두 번째 점수 입력 : ";
+//     cin >> score2;
+//     cout << "세 번째 점수 입력 : ";
+//     cin >> score3;
+
+//     // 최대값 찾기
+//     if(score1 > score2 && score1 > score3){
+//         maxScore = score1;
+//     }
+//     else if(score2 > score1 && score2 > score3){
+//         maxScore = score2;
+//     }
+//     else{
+//         maxScore = score3;
+//     }
+
+//     // 최소값 찾기
+//     if(score1 < score2 && score1 < score3){
+//         minScore = score1;
+//     }
+//     else if(score2 < score1 && score2 < score3){
+//         minScore = score2;
+//     }
+//     else{
+//         minScore = score3;
+//     }
+    
+//     int temp = maxScore + minScore;
+//     if(temp%2==1){
+//         temp +=1;
+//     }
+//     score = temp/2;
+//     cout << "입력한 점수 = " << score1 <<" "<< score2 <<" "<< score3 << endl;
+//     cout <<"최소 점수 : " << minScore << endl;
+//     cout <<"최대 점수 : " << maxScore << endl;
+//     cout <<"학생 성적 : " << score << endl;
+//     return 0;
+// }
+
 #include<iostream>
 using namespace std;
 
 int main(){
-    int score1, score2, score3, maxScore, minScore, score;
+    double income, tax;
+    double limit[3] ={10000.00,50000.00,100000.00};
+    double rate[4] = {0.05,0.10,0.15,0.20};
+    int bracket;
 
-    cout << "첫 번째 점수 입력 : ";
-    cin >> score1;
-    cout << "두 번째 점수 입력 : ";
-    cin >> score2;
-    cout << "세 번째 점수 입력 : ";
-    cin >> score3;
+    cout << "수입을 달러로 입력하세요 : ";
+    cin >> income;
 
-    // 최대값 찾기
-    if(score1 > score2 && score1 > score3){
-        maxScore = score1;
-    }
-    else if(score2 > score1 && score2 > score3){
-        maxScore = score2;
-    }
-    else{
-        maxScore = score3;
+    if((income<=limit[0])&&(income>=0)){
+        bracket = 1;
+    }else if((income>limit[0])&&(income<=limit[1])){
+         bracket = 2;
+    }else if((income>limit[1])&&(income<=limit[2])){
+         bracket = 3;
+    }else{
+        bracket = 4;
     }
 
-    // 최소값 찾기
-    if(score1 < score2 && score1 < score3){
-        minScore = score1;
+    switch (bracket)
+    {
+    case 1 : tax = income*rate[0]; break;
+    case 2 : tax = limit[0]*rate[0] + (limit[1]-limit[0])*rate[1]; break;
+    case 3 : tax = limit[0]*rate[0] + (limit[1]-limit[0])*rate[1]+ (income-limit[1])*rate[2]; break;
+    case 4 : tax = limit[0]*rate[0] + (limit[1]-limit[0])*rate[1]+ (limit[2]-limit[1])*rate[2]+ (income-limit[2])*rate[3]; break;
+    default:
+        cout << "입력 문제 발생" <<endl;
+        return 0;
     }
-    else if(score2 < score1 && score2 < score3){
-        minScore = score2;
-    }
-    else{
-        minScore = score3;
-    }
-    
-    int temp = maxScore + minScore;
-    if(temp%2==1){
-        temp +=1;
-    }
-    score = temp/2;
-    cout << "입력한 점수 = " << score1 <<" "<< score2 <<" "<< score3 << endl;
-    cout <<"최소 점수 : " << minScore << endl;
-    cout <<"최대 점수 : " << maxScore << endl;
-    cout <<"학생 성적 : " << score << endl;
+
+    cout <<"세금 = " << tax << endl;
     return 0;
 }
