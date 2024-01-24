@@ -89,21 +89,70 @@
 // }
 
 //3-30
+// #include<iostream>
+// #include<typeinfo>
+// using namespace std;
+
+// int main(){
+//     unsigned int inputSeconds;
+//     unsigned int hours, minutes, seconds;
+
+//     cout << "초 단위 시간을 입력하세요 (양의 정수로 입력 필요) : ";
+//     cin >> inputSeconds;
+
+//     hours = inputSeconds / (60*60);
+//     minutes = (inputSeconds - (hours * (60*60))) / 60 ;
+//     seconds = (inputSeconds - (hours * (60*60)) - (minutes*60));
+
+//     cout << "입력된 초 단위 시간 : " << inputSeconds <<endl;
+//     cout << "결과 : " << hours <<"시 " << minutes <<"분 " << seconds <<"초" <<endl;
+//     return 0;
+// }
+
+//4-15
 #include<iostream>
 using namespace std;
 
 int main(){
-    unsigned int inputSeconds;
-    unsigned int hours, minutes, seconds;
+    int score1, score2, score3, maxScore, minScore, score;
 
-    cout << "초 단위 시간을 입력하세요 (양의 정수로 입력 필요) : ";
-    cin >> inputSeconds;
+    cout << "첫 번째 점수 입력 : ";
+    cin >> score1;
+    cout << "두 번째 점수 입력 : ";
+    cin >> score2;
+    cout << "세 번째 점수 입력 : ";
+    cin >> score3;
 
-    hours = inputSeconds / (60*60);
-    minutes = (inputSeconds - (hours * (60*60))) / 60 ;
-    seconds = (inputSeconds - (hours * (60*60)) - (minutes*60));
+    // 최대값 찾기
+    if(score1 > score2 && score1 > score3){
+        maxScore = score1;
+    }
+    else if(score2 > score1 && score2 > score3){
+        maxScore = score2;
+    }
+    else{
+        maxScore = score3;
+    }
 
-    cout << "입력된 초 단위 시간 : " << inputSeconds <<endl;
-    cout << "결과 : " << hours <<"시 " << minutes <<"분 " << seconds <<"초" <<endl;
+    // 최소값 찾기
+    if(score1 < score2 && score1 < score3){
+        minScore = score1;
+    }
+    else if(score2 < score1 && score2 < score3){
+        minScore = score2;
+    }
+    else{
+        minScore = score3;
+    }
+    
+    int temp = maxScore + minScore;
+    if(temp%2==1){
+        temp +=1;
+    }
+    score = temp/2;
+    cout << "입력한 점수 = " << score1 <<" "<< score2 <<" "<< score3 << endl;
+    cout <<"최소 점수 : " << minScore << endl;
+    cout <<"최대 점수 : " << maxScore << endl;
+    cout <<"학생 성적 : " << score << endl;
     return 0;
 }
