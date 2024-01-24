@@ -63,5 +63,7 @@ int main(){
     cout << fixed << showpoint << setprecision(2);
     cout <<"원래 입력한 소수 : " << number << endl;
     cout <<"정수 부분 : " << intPart << endl;
-    cout <<"소수 부분 : " << fractPart << endl;
+    cout <<"소수점 아래 부분 : " << fractPart << endl;
+
+    return 0;
 }
