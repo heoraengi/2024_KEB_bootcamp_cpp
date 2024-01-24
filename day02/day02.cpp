@@ -45,25 +45,45 @@
 //
 
 // 3-28
+// #include <iostream>
+// #include <iomanip>
+// using namespace std;
+
+// int main(){
+//     double number;
+//     int intPart;
+//     double fractPart;
+
+//     cout << "소수를 입력하세요 : ";
+//     cin >> number;
+
+//     intPart = static_cast<int>(number);
+//     fractPart = number -intPart;
+    
+//     cout << fixed << showpoint << setprecision(2); 
+//     // fixed :  고정 소수점 출력
+//     // showpoint : 소수점을 보여준다.
+//     // setprecision : 입력한 숫자만큼 소수점에서 반올림 
+//     cout <<"원래 입력한 소수 : " << number << endl;
+//     cout <<"정수 부분 : " << intPart << endl;
+//     cout <<"소수점 아래 부분 : " << fractPart << endl;
+
+//     return 0;
+// }
+
+//3-29
 #include <iostream>
-#include <iomanip>
 using namespace std;
 
 int main(){
-    double number;
-    int intPart;
-    double fractPart;
+    unsigned int number, firstDigit;
 
-    cout << "소수를 입력하세요 : ";
+    cout << "양의 정수 입력 : ";
     cin >> number;
 
-    intPart = static_cast<int>(number);
-    fractPart = number -intPart;
-    
-    cout << fixed << showpoint << setprecision(2);
-    cout <<"원래 입력한 소수 : " << number << endl;
-    cout <<"정수 부분 : " << intPart << endl;
-    cout <<"소수점 아래 부분 : " << fractPart << endl;
+    firstDigit = number % 10;
 
+    cout <<"입력한 정수 : " << number <<endl ;
+    cout <<"첫 번째 자릿수 추출 : " <<firstDigit << endl;
     return 0;
 }
