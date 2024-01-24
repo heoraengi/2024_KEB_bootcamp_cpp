@@ -72,18 +72,38 @@
 // }
 
 //3-29
-#include <iostream>
+// #include <iostream>
+// using namespace std;
+
+// int main(){
+//     unsigned int number, firstDigit;
+
+//     cout << "양의 정수 입력 : ";
+//     cin >> number;
+
+//     firstDigit = number % 10;
+
+//     cout <<"입력한 정수 : " << number <<endl ;
+//     cout <<"첫 번째 자릿수 추출 : " <<firstDigit << endl;
+//     return 0;
+// }
+
+//3-30
+#include<iostream>
 using namespace std;
 
 int main(){
-    unsigned int number, firstDigit;
+    unsigned int inputSeconds;
+    unsigned int hours, minutes, seconds;
 
-    cout << "양의 정수 입력 : ";
-    cin >> number;
+    cout << "초 단위 시간을 입력하세요 (양의 정수로 입력 필요) : ";
+    cin >> inputSeconds;
 
-    firstDigit = number % 10;
+    hours = inputSeconds / (60*60);
+    minutes = (inputSeconds - (hours * (60*60))) / 60 ;
+    seconds = (inputSeconds - (hours * (60*60)) - (minutes*60));
 
-    cout <<"입력한 정수 : " << number <<endl ;
-    cout <<"첫 번째 자릿수 추출 : " <<firstDigit << endl;
+    cout << "입력된 초 단위 시간 : " << inputSeconds <<endl;
+    cout << "결과 : " << hours <<"시 " << minutes <<"분 " << seconds <<"초" <<endl;
     return 0;
 }
