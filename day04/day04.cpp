@@ -80,54 +80,111 @@
 //     return 0;
 // }
 
-//3개의 랜덤한 숫자를 정의하고 만들기
-#include<iostream>
-#include<cstdlib>
-#include<ctime>
-using namespace std;
+// //3개의 랜덤한 숫자를 정의하고 만들기
+// #include<iostream>
+// #include<cstdlib>
+// #include<ctime>
+// using namespace std;
 
-class RandomInteger
-{
-    private :
-        int low;
-        int high;
-        int value;
-    public :
-        RandomInteger(int low, int high);
-        ~RandomInteger();
-        RandomInteger(const RandomInteger& random) = delete; // 복사 생성자 막기 위해 = delete 라고 사용
-        void print() const;
+// class RandomInteger
+// {
+//     private :
+//         int low;
+//         int high;
+//         int value;
+//     public :
+//         RandomInteger(int low, int high);
+//         ~RandomInteger();
+//         RandomInteger(const RandomInteger& random) = delete; // 복사 생성자 막기 위해 = delete 라고 사용
+//         void print() const;
+// };
+
+// RandomInteger::RandomInteger(int lw, int hh) 
+// :low(lw), high(hh)
+// {
+//     srand(time(0));
+//     int temp = rand();
+//     value = temp % (high-low +1) + low;
+// }
+
+// RandomInteger::~RandomInteger()
+// {
+// }
+
+// void RandomInteger::print() const
+// {
+//     cout << value << endl;
+// }
+
+// int main()
+// {
+//     RandomInteger r1(100,200);
+//     cout <<"100~200 사이의 랜덤한 숫자 : ";
+//     r1.print();
+
+//     RandomInteger r2(400,600);
+//     cout <<"400~600 사이의 랜덤한 숫자 : ";
+//     r2.print();
+
+//     RandomInteger r3(1500,2000);
+//     cout <<"1500~2000 사이의 랜덤한 숫자 : ";
+//     r3.print();
+//     return 0;
+// }
+
+// int 변수의 얕은 복사 깊은 복사
+class ClassA {
+public:
+    int age;
+
+    // 기본 생성자
+    ClassA() : age(0) {}
+
+    // 얕은 복사 생성자
+    ClassA(const ClassA& rhs) : age(rhs.age) {}
 };
 
-RandomInteger::RandomInteger(int lw, int hh) 
-:low(lw), high(hh)
-{
-    srand(time(0));
-    int temp = rand();
-    value = temp % (high-low +1) + low;
-}
+class ClassB {
+public:
+    int age;
 
-RandomInteger::~RandomInteger()
-{
-}
+    // 기본 생성자
+    ClassB() : age(0) {}
 
-void RandomInteger::print() const
-{
-    cout << value << endl;
-}
+    // 깊은 복사 생성자
+    ClassB(const ClassB& rhs) : age(rhs.age) {}
+};
 
-int main()
-{
-    RandomInteger r1(100,200);
-    cout <<"100~200 사이의 랜덤한 숫자 : ";
-    r1.print();
+#include <iostream>
 
-    RandomInteger r2(400,600);
-    cout <<"400~600 사이의 랜덤한 숫자 : ";
-    r2.print();
+using namespace std;
 
-    RandomInteger r3(1500,2000);
-    cout <<"1500~2000 사이의 랜덤한 숫자 : ";
-    r3.print();
+// 위에서 정의한 ClassA와 ClassB를 사용
+
+int main() {
+    // ClassA (얕은 복사)
+    ClassA objA1;
+    objA1.age = 30;
+    ClassA objA2 = objA1; // 얕은 복사
+    objA2.age = 40; // objA2의 age 변경
+
+    cout << "ClassA (Shallow Copy) Test:" << endl;
+    cout << "Object A1 age: " << objA1.age << endl; // 30으로 유지됨
+    cout << "Object A1 age 주소: " << &objA1.age << endl; // 30으로 유지됨
+    cout << "Object A2 age: " << objA2.age << endl; // 40으로 변경됨
+    cout << "Object A2 age 주소: " << &objA2.age << endl; // 40으로 변경됨
+
+    // ClassB (깊은 복사)
+    ClassB objB1;
+    objB1.age = 30;
+    ClassB objB2 = objB1; // 깊은 복사
+    objB2.age = 40; // objB2의 age 변경
+
+    cout << "\nClassB (Deep Copy) Test:" << endl;
+    cout << "Object B1 age: " << objB1.age << endl; // 30으로 유지됨
+    cout << "Object B1 age 주소 : " << &objB1.age << endl; // 30으로 유지됨
+    cout << "Object B2 age: " << objB2.age << endl; // 40으로 변경됨
+    cout << "Object B2 age 주소 : " << &objB2.age << endl; // 40으로 변경됨
+
     return 0;
 }
